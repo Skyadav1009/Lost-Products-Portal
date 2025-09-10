@@ -16,16 +16,14 @@ const Dashboard = () => {
 
         setLostItems(lostRes.data);
         setFoundItems(foundRes.data);
-        setLoading(false);
       } catch (err) {
         console.error("Error fetching dashboard items:", err);
+      } finally {
         setLoading(false);
       }
     };
 
-    if (user) {
-      fetchMyItems();
-    }
+    if (user) fetchMyItems();
   }, [user]);
 
   if (loading) return <div className="text-center py-8">Loading your items...</div>;
@@ -46,7 +44,9 @@ const Dashboard = () => {
               <div key={item._id} className="bg-white p-4 shadow rounded-xl border">
                 <h3 className="text-xl font-bold">{item.title}</h3>
                 <p className="text-gray-700">{item.description}</p>
-                <p className="text-sm text-gray-500">Reported on: {new Date(item.createdAt).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500">
+                  Reported on: {new Date(item.createdAt).toLocaleDateString()}
+                </p>
               </div>
             ))}
           </div>
@@ -64,7 +64,9 @@ const Dashboard = () => {
               <div key={item._id} className="bg-white p-4 shadow rounded-xl border">
                 <h3 className="text-xl font-bold">{item.title}</h3>
                 <p className="text-gray-700">{item.description}</p>
-                <p className="text-sm text-gray-500">Reported on: {new Date(item.createdAt).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500">
+                  Reported on: {new Date(item.createdAt).toLocaleDateString()}
+                </p>
               </div>
             ))}
           </div>
