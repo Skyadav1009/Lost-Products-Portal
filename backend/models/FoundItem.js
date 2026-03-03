@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { validate } from 'validator';
 
 const foundItemSchema = new mongoose.Schema(
   {
@@ -7,7 +8,7 @@ const foundItemSchema = new mongoose.Schema(
     category: { type: String, required: true },
     location: { type: String, required: true },
     date: { type: Date, required: true },
-    image: { type: String },
+    image: { type: String, validate: [validate.isURL, 'Invalid image URL'] },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
